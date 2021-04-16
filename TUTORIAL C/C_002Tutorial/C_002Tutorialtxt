@@ -1,0 +1,21 @@
+EX02
+
+https://www.tutorialspoint.com/c_standard_library/c_function_strncpy.htm
+
+A função da biblioteca C char * strncpy (char * dest, const char * src, size_t n) 
+copia até n caracteres da string apontada, por src para dest . 
+Em um caso em que o comprimento de src é menor que o de n, o 
+restante de dest será preenchido com bytes nulos.
+
+A seguir está a declaração para a função strncpy ().
+
+char *strncpy(char *dest, const char *src, size_t n)
+Parâmetros
+dest - Este é o ponteiro para a matriz de destino onde o conteúdo deve ser copiado.
+
+src - Esta é a string a ser copiada.
+
+n - O número de caracteres a serem copiados da fonte.
+
+Valor de retorno
+Esta função retorna a cópia final da string copiada.

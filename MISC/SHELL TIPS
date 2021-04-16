@@ -1,0 +1,306 @@
+‘’ ASPAS PARA COPIAR pq meu teclado n tem isso
+
+echo algumacoisa = printa algumacoisa ou oq escrever na tela
+
+wc (short for word count) counts newlines, words and bytes on its input.
+
+Usamos | para redirecionar a um programa e nao para um arquivo
+
+\n = quebra de linha
+
+ls = exibe a lista de conteudo do diretorio atual
+
+ls -l = fara uma lista longa do diretorio
+
+cat = vai listar o conteudo do arquivo, em vez do diretorio
+
+
+**********************
+touch = cria arquivo
+
+touch -t  = use [[CC]YY]MMDDhhmm[.ss] instead of current time
+
+
+
+u: define que as regras serão aplicadas ao usuário
+
+g: define que as regras serão aplicadas ao grupo
+
+o: define que as regras serão aplicadas aos outros usuários do sistema
+
+a: define que as regras serão aplicadas a todos
+
+***************************
+
+In caminho/arquivo-original caminho/link
+
+tar -xvf = descompactar arquivo tar
+
+printenv  = mostra informacoes gerais e variaveis q estao no sistema geral
+
+
+
+  					***** HEAD *****
+head -n 10 nomeArquivo = Exibe as 10 primeiras Linhas do arquivo 
+head -c 10 nomeArquivo = Exibe os 10 primeiros caracteres do arquivo
+
+*************************FIM*************************
+
+
+					***** TAIL *****
+tail -n 10 nomeArquivo = Exibe as 10 ultimas linhas do arquivo
+tail -c 10 nomeArquivo = Exibe os 10 ultimos caracteres do arquivo (obs: a quebra de linha $ conta como caractere)
+
+*************************FIM*************************
+
+
+					***** GREP *****
+		IMPORTANTE: O GREP NAO ALTERA ARQUIVOS ELE PROCURA / MOSTRA / FILTRA CONTEUDOS
+
+https://terminalroot.com.br/2015/01/shell-script-validandotele.html
+
+grep : This command is used to search for the specified text in a file.
+
+grep palavraParaProcurar nomeArquivo = Procura a palavra digitada e printa a linha toda que esta com essa palavra
+grep -v palavraParaProcurar nomeArquivo = Procura a palavra digitada e printa as linha que nao tem essa palavra
+grep -i PaLavrAPAraPrOcUrAr nomeArquivo = Procura a palavra digitada e printa a linha que esta com ela sem utilizar o caseSensitive, ou seja palavraParaProcurar: CaRrO, ele ira encontrar qualquer palavra carro ou CaRRO ou cARRO....
+
+Usamos | para redirecionar a um programa e nao para um arquivo
+
+10-Encontrar 27 sequência^de 27 caracteres:
+
+egrep '^.{27}$' passwd
+Note que foi usado o egrep e não o grep. É porque as chaves fazem parte de um 
+conjunto avançado de Expressões Regulares (“extended”), então o egrep lida melhor
+com elas. Se fosse para usar o grep normal, teria que “escapar” as chaves
+
+**************************FIM*************************
+
+					***** WC *****
+			IMPORTANTE: O WC NAO ALTERA ARQUIVOS ELE PROCURA / MOSTRA / FILTRA LINHAS PALAVRAS E CARACTERES
+wc. Este comando é utilizado para contar caracteres, palavras e/ou linhas dos dados da entrada padrão e apresenta o resultado
+-l: conta as linhas;
+-w: conta as palavras;
+-c: conta os caracteres.
+Exemplos:
+
+# wc -l texto.txt
+26 texto.txt
+
+# wc -w texto.txt
+14 texto.txt
+
+# wc texto.txt
+2346   282   26
+
+
+*************FIM*****************************
+
+************************EX01 C*********************
+groups $FT_USER | sed -e "s/ /,/g" | tr -d '\n' 
+					s = "substitute, /<oq estiver vazio> / por ,"  g no final (como se usa o d e p) altera todas as ocorrências
+
+
+********************FIM*************************
+
+
+
+******************TR***********************	
+
+Usage: tr [OPTION]... SET1 [SET2]
+Translate, squeeze, and/or delete characters from standard input,
+writing to standard output.
+
+  -c, -C, --complement    use the complement of SET1
+  -d, --delete            delete characters in SET1, do not translate
+  -s, --squeeze-repeats   replace each sequence of a repeated character
+                            that is listed in the last specified SET,
+                            with a single occurrence of that character
+  -t, --truncate-set1     first truncate SET1 to length of SET2
+      --help     display this help and exit
+      --version  output version information and exit
+
+SETs are specified as strings of characters.  Most represent themselves.
+Interpreted sequences are:
+
+  \NNN            character with octal value NNN (1 to 3 octal digits)
+  \\              backslash
+  \a              audible BEL
+  \b              backspace
+  \f              form feed
+  \n              new line
+  \r              return
+  \t              horizontal tab
+  \v              vertical tab
+  CHAR1-CHAR2     all characters from CHAR1 to CHAR2 in ascending order
+  [CHAR*]         in SET2, copies of CHAR until length of SET1
+  [CHAR*REPEAT]   REPEAT copies of CHAR, REPEAT octal if starting with 0
+  [:alnum:]       all letters and digits
+  [:alpha:]       all letters
+  [:blank:]       all horizontal whitespace
+  [:cntrl:]       all control characters
+  [:digit:]       all digits
+  [:graph:]       all printable characters, not including space
+  [:lower:]       all lower case letters
+  [:print:]       all printable characters, including space
+  [:punct:]       all punctuation characters
+  [:space:]       all horizontal or vertical whitespace
+  [:upper:]       all upper case letters
+  [:xdigit:]      all hexadecimal digits
+  [=CHAR=]        all characters which are equivalent to CHAR
+
+Translation occurs if -d is not given and both SET1 and SET2 appear.
+-t may be used only when translating.  SET2 is extended to length of
+SET1 by repeating its last character as necessary.  Excess characters
+of SET2 are ignored.  Only [:lower:] and [:upper:] are guaranteed to
+expand in ascending order; used in SET2 while translating, they may
+only be used in pairs to specify case conversion.  -s uses the last
+specified SET, and occurs after translation or deletion.
+
+
+***************************FIM*************************
+					
+
+*************************TR***********************
+Options
+
+-c : complements the set of characters in string.i.e., operations apply to characters not in the given set
+-d : delete characters in the first set from the output.
+-s : replaces repeated characters listed in the set1 with single occurrence
+-t : truncates set1		
+https://www.geeksforgeeks.org/tr-command-in-unix-linux-with-examples/
+tr -d '\n'   =  deleta as quebras linhas
+
+
+
+find . -type f -name "*.sh" -exec basename -s ".sh" {} \;
+Procurar na pasta de cima, tipo file de nome "qlqnome.sh", -exec faz procurar em todos os files, basename recebe o resultado do find, -s tira o sufixo escolhido que no caso e' ".sh"
+ -exec faz procurar em todos os files {}, o \; 
+
+
+***************************FIM*************************
+
+******************** sed **************************
+
+sed = editor de fluxo para filtrar e transformar texto
+
+É case sentive
+-i altera o arquivo
+-e imprime na tela sem alterar o arquivo
+-n faz a supressão, mostra só o resutado do comando
+s substitui um trecho de texto por outro
+! inverte a lógica do comando
+; separador de comandos
+| separador de strings
+d no final deleta
+p no final imprime
+g no final (como se usa o d e p) altera todas as ocorrências
+q sai do sed , não continua o comando
+Lista completa das classes de caracteres do GNU Sed(POSIX)
+[[:alnum:]] Alfabéticos e númericos [a-z A-Z 0-9]
+[[:alpha:]] Alfabéticos [a-z A-Z]
+[[:blank:]] Caractere em branco, espaço ou tab [ \t]
+[[:cntrl:]] Caracteres de controle [\x00-\x1F\x7F]
+[[:digit:]] Números [0-9]
+[[:graph:]] Qualquer caractere visível(ou seja, exceto em branco) [\x20-\x7E]
+[[:lower:]] Letras minúsculas [a-z]
+[[:upper:]] Letras maiúsculas [A-Z]
+[[:print:]] Caracteres visíveis (ou seja, exceto os de controle) [\x20-\x7E]
+[[:punct:]] Pontuação [-!"#$%&'()*+,./:;?@[\\\]_{|}~].
+[[:space:]] Espaço em branco [ \t\r\n\v\f]
+[[:xdigit:]] Número hexadecimais [0-9 a-f A-F]
+
+************************FIM**********************************
+
+
+********************CUT**********************
+
+cut : Used to cut a specified part of a file.
+
+
+************************FIM**********************************
+
+
+
+***************************REGEX*****************************
+
+Expressões regulares ou REGEX são basicamente cadeias de caracteres que definem um 
+padrão de pesquisa, elas podem ser usadas para executar operações de 'Pesquisa' ou 
+'Pesquisa e Substituição', bem como podem ser usadas para validar uma condição como 
+política de senha etc
+
+*************************FIM*****************************
+
+
+
+**********************FIND************************
+
+The find command is one of the most powerful tools in the Linux system administrators arsenal. 
+It searches for files and directories in a directory hierarchy based on a user given expression 
+and can perform user-specified action on each matched file.
+
+The general SYNTAX for the find command is as follows:
+
+find [options] [path...] [expression]
+The options attribute controls the treatment of the symbolic links, debugging options, and optimization method.
+The path... attribute defines the starting directory or directories where find will search the files.
+The expression attribute is made up of options, search patterns, and actions separated by operators.
+To search for files in a directory, the user invoking the find command needs to have read permissions on that directory.
+
+Let’s take a look at the following example:
+
+find -L /var/www -name "*.js"
+
+The option -L (options) tells the find command to follow symbolic links.
+The /var/www (path…) specifies the directory that will be searched.
+The (expression) -name "*.js tells find to search files ending with .js (JavaScript files).
+
+FIND FILES BY NAME
+Finding files by name is probably the most common use of the find command. To find a file by its name, use the -name option followed by the name of the file you are searching for.
+
+For example, to search for a file named document.pdf in the /home/linuxize directory, you would use the following command:
+find /home/linuxize -type f -name document.pdf
+Copy
+To run a case-insensitive search, change the -name option with -iname:
+
+find /home/linuxize -type f -iname document.pdf
+Copy
+The command above will match “Document.pdf”, “DOCUMENT.pdf” ..etc.
+
+
+FIND FILES BY EXTENSION
+Searching for files by extension is the same as searching for files by name. For example, to find all files ending with .log.gz inside the /var/log/nginx directory, you would type:
+
+find /var/log/nginx -type f -name '*.log.gz'
+Copy
+It is important to mention that you must either quote the pattern or escape the asterisk * symbol with backslash \ so that it doesn’t get interpreted by the shell when you use the wildcard character.
+
+To find all files that don’t match the regex *.log.gz you can use the -not option. For example, to find all files that don’t end in *.log.gz you would use:
+find /var/log/nginx -type f -not -name '*.log.gz' 
+
+1-Procura a palavra marcos no arquivo /etc/passwd:
+
+grep marcos /et/passwd
+2-Procura todas as linhas começadas pela letra u no arquivo /etc/passwd:
+
+grep '^u' /et/passwd
+3-Procura todas as linhas terminadas pela palavra false no arquivo /etc/passwd:
+
+grep 'false$' /et/passwd
+
+*********************FIM********************************
+
+
+**************BASENAME**************
+
+basename - tira o diretório e o sufixo dos nomes de arquivos
+
+-s, --suffix=SUFFIX
+              remove a trailing SUFFIX; implies -a
+
+***********************FIM******************************
+
+*************************AWK***********************************
+mawk é um intérprete da linguagem de programação AWK. 
+A linguagem AWK é útil para manipulação de arquivos de dados, texto 
+recuperação e processamento, e para prototipagem e experimentação de algoritmos.

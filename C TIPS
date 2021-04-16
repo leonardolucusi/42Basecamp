@@ -1,0 +1,128 @@
+alias g="gcc -Wall -Wextra -Werror -o test main.c"
+alias n="norminette -R CheckForbiddenSourceHeader"
+
+/* 	no terminal> gcc ft_print_comb.c main.c -o main
+	no terminal> ./main  */
+	
+*******************REGRAS DE ENTREGA**********************
+
+moulinette gcc  -Wall -Wextra -Werror
+Você não deve deixar em sua pasta nenhum 
+outro arquivo além daqueles explicitamente especificados
+pelos enunciados dos exercícios.
+
+norminette -R CheckForbiddenSourceHeader
+**************************FIM******************************
+
+**********STRING INFO**********************
+string literals are char arrays with a null \0 at the end
+*******************************************
+
+**************VOID********************
+void e' utilizado para dizer a uma funcao que nao retorne nada ou que n pegue nenhum parametro
+
+*****************************
+
+A passagem por valor, padrão em C, não permite que uma 
+função manipule diretamente uma variável que lhe esteja 
+sendo passada. Quando se deseja manipular diretamente a 
+variável, ponteiros devem ser usados como o recurso de acesso.
+
+int x;
+&x; O sinal & e' o endereco da memoria que esta alocando a variavel;
+
+#include <stdio.h>
+#include <unistd.h>
+
+
+printf(ponteiro) acessa o endereco de memoria
+printf(*ponteiro) acessa o valor do endereco de memoria
+
+*****************************************************************************************************
+**********************************	ARRAY TIP	*****************************************************
+
+int tab[3];
+criaram 3 ints, [0] ocupando 4byts, [1] ocupando 4 bytes, [2] ocupando 4 bytes...
+o tab é um PONTEIRO ao primeiro int dentro do array o [0]
+
+*****************************************************************************************************
+
+N PODE DEIXAR A FUNCAO MAIN DENTRO DOS EXERCICIOS
+NAO PODE TER FUNCAO MAIN AO DAR PUSH
+
+The printf() family of functions uses % character as a placeholder. 
+When a % is encountered, printf reads the characters following the % to
+determine what to do:
+
+%s - Take the next argument and print it as a string
+%d - Take the next argument and print it as an int
+
+%c
+imprime o conteúdo da variável com representação ASCII;
+
+%d
+imprime o conteúdo da variável com representação decimal com sinal;
+
+%u
+imprime o conteúdo da variável com representação decimal sem sinal;
+%o
+imprime o conteúdo da variável com representação octal sem sinal;
+%x
+imprime o conteúdo da variável com representação hexadecimal sem sinal.
+Uma largura de campo pode ser opcionalmente especificada logo após o caráter %, como em %12d para especificar que o número decimal terá reservado um espaço de doze caracteres para sua representação. Se a largura de campo for negativa, então o número será apresentado alinhado à esquerda ao invés do comportamento padrão de alinhamento à direita. Para a conversão de variáveis do tipo long, o caráter l também deve ser especificado, como em %ld.
+Para converter variáveis em ponto flutuante, as seqüências são:
+
+%f
+imprime o conteúdo da variável com representação com ponto decimal;
+%e
+imprime o conteúdo da variável com representação em notação científica (exponencial);
+%g
+
+%p Sempre use %p para ponteiros.
+**************POINTER************
+
+************C_01 EX05**********
+#include <unistd.h>
+#include <stdio.h>
+
+void	ft_putstr(char *str) // ft_putstr recebe o valor de um ponteiro/array do tipo char como parametro 
+{
+	while (*str!='\0') // Enquanto o valor dentro do endereco apontado por str n for vazio FAÇA
+	{
+		write(1, str, 1); // Printa str[0], no proximo loop, str[1]...prox..str[2]...prox...str[3]...
+		str++; // str ent recebe +1, printa str[1].. str[2]... str[3]
+	}
+}
+
+int main(void)
+{
+	char str[] = "lol"; // Crio um array de char
+	//
+	ft_putstr(str); //
+	
+	
+}
+
+********************
+#include <unistd.h>
+#include <stdio.h>
+
+void	ft_putstr(char *str)
+{
+	while (*str!='\0')
+	{
+		write(1, str, 1);
+		
+		str++;
+	}
+}
+
+int main(void)
+{
+	char str[] = "lol";
+	ft_putstr(str);
+	
+	
+}
+
+**********************FIM***********************
